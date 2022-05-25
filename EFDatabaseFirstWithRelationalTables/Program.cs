@@ -89,17 +89,30 @@ namespace EFDatabaseFirstWithRelationalTables
             Console.WriteLine("BY USING NEVIGATION PROPERTIES DEPARTMENT.EMPLOYEE");
 
 
-            Department dep1 = context.Departments.FirstOrDefault(d => d.DeptId == 1);
+            //Department dep1 = context.Departments.FirstOrDefault(d => d.DeptId == 1);
 
-            dep1.Employees.Add(new Employee()
-            {
-                EmpName = "Aniket",
-                CourseDuration = 40
-            });
+            //dep1.Employees.Add(new Employee()
+            //{
+            //    EmpName = "Aniket",
+            //    CourseDuration = 40
+            //});
 
+            //context.SaveChanges();
+
+
+            //UPDATE
+            Employee employee = context.Employees.FirstOrDefault(e => e.EmpID == 1021);
+            employee.EmpName = "Aniket Mohapatra";
             context.SaveChanges();
 
+            // DELETE
+            Employee emp1 = context.Employees.FirstOrDefault(e => e.EmpID == 1007);
+            context.Employees.Remove(emp1);
 
+            //DELETE ON DELETE CASCADE
+            Department dep123 = context.Departments.FirstOrDefault(d => d.DeptId == 5);
+            context.Departments.Remove(dep123);
+            context.SaveChanges();
 
 
             Console.Read();
