@@ -61,20 +61,32 @@ namespace EFDatabaseFirstWithRelationalTables
             {
                 Console.WriteLine(item.DeptId + " " + item.DeptName + " " + item.DeptLoc);
             }
-            var r= context.Employees.Add(new Employee()
-            {
-                EmpName = "Virat Kohli",
-                DeptID = department.DeptId, // u can enter directly DeptID=5
-                CourseDuration = 40
-            });
-            Console.WriteLine( "r============="+ r);
-            context.SaveChanges();
 
+
+            //var r= context.Employees.Add(new Employee()
+            //{
+            //    EmpName = "Virat Kohli",
+            //    DeptID = department.DeptId, // u can enter directly DeptID=5
+            //    CourseDuration = 40
+            //});
+            //Console.WriteLine( "r============="+ r);
+            //context.SaveChanges();
+
+
+
+            Console.WriteLine("Add Employee BY USING NEVIGATION PROPERTIES EMPLOYEE.DEPARTMENT");
+            Department dep = context.Departments.FirstOrDefault(d => d.DeptId == 1);
+            context.Employees.Add(new Employee()
+            {
+                EmpName = "Rohit Sharma",
+                Department = dep,    // HERE we enter direct dpt
+                CourseDuration = 40
+
+            });
+          context.SaveChanges();
 
 
             Console.Read();
-
-
         }
     }
 }
