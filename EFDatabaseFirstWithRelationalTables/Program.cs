@@ -75,15 +75,31 @@ namespace EFDatabaseFirstWithRelationalTables
 
 
             Console.WriteLine("Add Employee BY USING NEVIGATION PROPERTIES EMPLOYEE.DEPARTMENT");
-            Department dep = context.Departments.FirstOrDefault(d => d.DeptId == 1);
-            context.Employees.Add(new Employee()
-            {
-                EmpName = "Rohit Sharma",
-                Department = dep,    // HERE we enter direct dpt
-                CourseDuration = 40
+            //  Department dep = context.Departments.FirstOrDefault(d => d.DeptId == 1);
+            //  context.Employees.Add(new Employee()
+            //  {
+            //      EmpName = "Rohit Sharma",
+            //      Department = dep,    // HERE we enter direct dpt
+            //      CourseDuration = 40
 
+            //  });
+            //context.SaveChanges();
+
+
+            Console.WriteLine("BY USING NEVIGATION PROPERTIES DEPARTMENT.EMPLOYEE");
+
+
+            Department dep1 = context.Departments.FirstOrDefault(d => d.DeptId == 1);
+
+            dep1.Employees.Add(new Employee()
+            {
+                EmpName = "Aniket",
+                CourseDuration = 40
             });
-          context.SaveChanges();
+
+            context.SaveChanges();
+
+
 
 
             Console.Read();
